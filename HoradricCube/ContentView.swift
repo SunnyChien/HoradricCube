@@ -1,24 +1,13 @@
-//
-//  ContentView.swift
-//  HoradricCube
-//
-//  Created by Cici on 2026/6/7.
-//
-
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        CubeView()
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: Gem.self, inMemory: true)
 }

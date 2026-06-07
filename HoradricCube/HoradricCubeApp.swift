@@ -1,11 +1,5 @@
-//
-//  HoradricCubeApp.swift
-//  HoradricCube
-//
-//  Created by Cici on 2026/6/7.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct HoradricCubeApp: App {
@@ -13,5 +7,6 @@ struct HoradricCubeApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Gem.self)
     }
 }
