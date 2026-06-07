@@ -1,0 +1,20 @@
+//
+//  Untitled.swift
+//  HoradricCube
+//
+//  Created by Cici on 2026/6/7.
+
+
+//# 忽略用户配置数据
+*.xcuserstate
+*.xcuserdatad
+xcuserdata/
+
+# 忽略 Xcode 生成的文件
+*.xcworkspace/xcuserdata/
+# 根据依赖管理工具选择忽略（推荐）
+Pods/
+Carthage/Build/
+
+# 如果错误提交了，先用 git rm --cached <路径> 移出仓库，再更新 .gitignore
+
