@@ -39,9 +39,23 @@ struct GemIcon: View {
 struct GemCard: View {
     let gem: Gem
 
+    private var photoImage: Image? {
+        guard let data = gem.photoData, let uiImage = UIImage(data: data) else { return nil }
+        return Image(uiImage: uiImage)
+    }
+
     var body: some View {
         HStack(spacing: 12) {
-            GemIcon(type: gem.type, grade: gem.grade, size: 50)
+            // 如果有照片则显示缩略图，否则显示宝石图标
+            if let photoImage {
+                photoImage
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 50, height: 50)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            } else {
+                GemIcon(type: gem.type, grade: gem.grade, size: 50)
+            }
 
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(gem.type.gemName) · \(gem.grade.displayName)")

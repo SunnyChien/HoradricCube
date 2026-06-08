@@ -181,16 +181,23 @@ struct MergeGemView: View {
             .filter { $0.type == selectedType && $0.grade == selectedGrade }
             .sorted { $0.createdAt < $1.createdAt }
 
+        // 记录源宝石信息
+        let sourceInfos: [GemSource] = (0..<GemGrade.mergeCount).map { i in
+            let g = candidates[i]
+            return GemSource(reason: g.reason, createdAt: g.createdAt, photoData: g.photoData)
+        }
+
         // 删除3颗
         for i in 0..<GemGrade.mergeCount {
             modelContext.delete(candidates[i])
         }
 
-        // 创建1颗高一级宝石
+        // 创建1颗高一级宝石，保留合成来源
         let newGem = Gem(
             type: selectedType,
             grade: nextGrade,
-            reason: "由\(GemGrade.mergeCount)颗\(selectedGrade.displayName)\(selectedType.gemName)合成"
+            reason: "由\(GemGrade.mergeCount)颗\(selectedGrade.displayName)\(selectedType.gemName)合成",
+            sources: sourceInfos
         )
         modelContext.insert(newGem)
 

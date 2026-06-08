@@ -160,8 +160,12 @@ struct CubeDetailView: View {
             } else {
                 List {
                     ForEach(filteredGems) { gem in
-                        GemCard(gem: gem)
-                            .listRowBackground(Color.clear)
+                        NavigationLink {
+                            GemDetailView(gem: gem)
+                        } label: {
+                            GemCard(gem: gem)
+                        }
+                        .listRowBackground(Color.clear)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
                                     modelContext.delete(gem)
